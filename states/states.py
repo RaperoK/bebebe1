@@ -9,6 +9,8 @@ class States(StatesGroup):
         money_to = State()
         percent_from = State()
         percent_to = State()
+        percent_change_from = State()
+        percent_change_to = State()
         coeff_to = State()
         coeff_from = State()
         coeff_diff = State()

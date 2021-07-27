@@ -8,7 +8,7 @@ def get_time(iso8601):
     date_time = datetime.strptime(iso8601, "%Y-%m-%dT%H:%M:%S%z")
     return date_time.time().strftime("%H:%M")
 
-def percent(list):
+def get_percents(list):
     result = []
     for item in list:
         result.append(round(item / sum(list) * 100))

@@ -1,9 +1,9 @@
 import const
 
 coeff = {'from': const.COEFF['min'], 'to': const.COEFF['max']}
-coeff_diff = 0
 money = {'from': const.MONEY['min'], 'to': const.MONEY['max']}
 percent = {'from': const.PERCENT['min'], 'to': const.PERCENT['max']}
+percent_change = {'from': const.PERCENT['min'], 'to': const.PERCENT['max']}
 
 category = const.CATEGORY['all']
 

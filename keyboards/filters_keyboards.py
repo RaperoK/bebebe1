@@ -1,13 +1,15 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton
 
-
-set_filters_keyboard = ReplyKeyboardMarkup(
-    [
+def get_set_filters_keyboard(start):
+    return ReplyKeyboardMarkup([
         [
             KeyboardButton(text="Изменить фильтры"),
-            KeyboardButton(text="Запросить данные"),
+        ],
+        [
+            KeyboardButton(text=f"{'Приостановить' if start else 'Возобновить'}"),
         ]
     ], resize_keyboard=True)
+
 
 def get_choice_keyboadrs(dict):
     buttons = []
@@ -33,9 +35,6 @@ def get_filters_keyboard(filters):
                 InlineKeyboardButton(text=f"До {filters.coeff['to']} кф", callback_data="coeff_to")
             ],
             [
-                InlineKeyboardButton(text=f"изменение > {filters.coeff_diff} кф", callback_data="coeff_diff")
-            ],
-            [
                 InlineKeyboardButton(text=f"От {filters.time_1['from']} мин I", callback_data="time_1_from"),
                 InlineKeyboardButton(text=f"До {filters.time_1['to']} мин I", callback_data="time_1_to")
             ],
@@ -44,7 +43,8 @@ def get_filters_keyboard(filters):
                 InlineKeyboardButton(text=f"До {filters.time_2['to']} мин II", callback_data="time_2_to")
             ],
             [
-                InlineKeyboardButton(text=f"Первый тайм Голы: {filters.first_half}", callback_data="first_half"),
+                InlineKeyboardButton(text=f"От ↑ {filters.percent_change['from']} %", callback_data="percent_change_from"),
+                InlineKeyboardButton(text=f"До ↑ {filters.percent_change['to']} %", callback_data="percent_change_to")
             ],
             [
                 InlineKeyboardButton(text="Сохранить", callback_data="save_filters"),
