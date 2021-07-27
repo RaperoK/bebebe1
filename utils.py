@@ -13,3 +13,23 @@ def percent(list):
     for item in list:
         result.append(round(item / sum(list) * 100))
     return result
+
+def try_parse_int(text):
+    try:
+        to_int = int(text)
+        return True
+    except:
+        return None
+
+def try_parse_float(text):
+    try:
+        to_float = float(text)
+        return True
+    except:
+        return None
+
+def try_calculate(text):
+    try:
+        return eval(text)
+    except:
+        return None

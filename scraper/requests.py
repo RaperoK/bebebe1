@@ -1,31 +1,30 @@
 import requests
 import json
 
-from filters import live_only, prematch_only, min_vol, max_vol, min_percent, max_percent, min_odd, max_odd
+import const
 from utils import get_date
 
 
-def matches_url(filters):
-    base_url = "https://betwatch.fr/getMoney?choice=&"
+def matches_url(goals, live_only, prematch_only, min_percent, max_percent):
+    base_url = "https://betwatch.fr/getMoney?choice="
     return base_url + "&".join([
+            f"{f'First%20Half%20Goals%20{goals}' if goals != const.FIRST_HALF['none'] else ''}",
             f"date={get_date()}",
-            f"live_only={filters.live_only}",
-            f"prematch_only={filters.prematch_only}",
+            f"live_only={live_only}",
+            f"prematch_only={prematch_only}",
             "not_countries=",
             "not_leagues=",
             "settings_order=score",
             "country=",
             "league=",
-            f"min_vol={filters.min_vol}",
-            f"max_vol={filters.max_vol}",
-            f"min_vol={filters.min_vol}",
-            f"max_vol={filters.max_vol}",
-            f"min_percent={filters.min_percent}",
-            f"max_percent={filters.max_percent}",
-            f"min_odd={filters.min_odd}",
-            f"max_odd={filters.max_odd}",
+            f"min_vol=0",
+            f"max_vol=103",
+            f"min_percent={min_percent}",
+            f"max_percent={max_percent}",
+            f"min_odd=0",
+            f"max_odd=349",
             "filtering=true",
-            "utc=5"]).replace("False", "false").replace("True", "true")
+            "utc=5"])
 
 def scores_url(id_list):
     return f"https://betwatch.fr/live?live={','.join(id_list)}"

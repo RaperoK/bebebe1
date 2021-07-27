@@ -1,13 +1,13 @@
 import const
 
-step = 1
-min_vol = 0
-max_vol = const.LIMIT_VOL
-min_percent = 0
-max_percent = const.LIMIT_PERCENT
-min_odd = 0
-max_odd = const.LIMIT_ODD
-live_only = False
-prematch_only = False
-min_time_1 = 0
-max_time_1 = const.LIMIT_TIME
+coeff = {'from': const.COEFF['min'], 'to': const.COEFF['max']}
+coeff_diff = 0
+money = {'from': const.MONEY['min'], 'to': const.MONEY['max']}
+percent = {'from': const.PERCENT['min'], 'to': const.PERCENT['max']}
+
+category = const.CATEGORY['all']
+
+time_1 = {'from': const.TIME1['min'], 'to': const.TIME1['max']}
+time_2 = {'from': const.TIME2['min'], 'to': const.TIME2['max']}
+
+first_half = const.FIRST_HALF['none']

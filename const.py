@@ -1,7 +1,17 @@
-LIMIT_VOL = 103
-LIMIT_PERCENT = 100
-LIMIT_ODD = 349
-LIMIT_TIME = 45
+PAUSE = False
+LIMIT_VOL: 103
+LIMIT_PERCENT: 100
+LIMIT_ODD: 349
+LIMIT_TIME: 45
+
+CATEGORY = {'all': 'Все матчи', 'live': 'Онлайн матчи', 'prematch': 'Предстоящие матчи'}
+FIRST_HALF = {'goal0_5': 0.5, 'goal1_5': 1.5, 'goal2_5': 2.5, 'none': 'нет'}
+
+MONEY = {'min': 0, 'max': 1000000}
+PERCENT = {'min': 0, 'max': 100}
+COEFF = {'min': 1.01, 'max': 1000}
+TIME1 = {'min': 0, 'max': 45}
+TIME2 = {'min': 45, 'max': 90}
 
 import numpy
 

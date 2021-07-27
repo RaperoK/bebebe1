@@ -1,9 +1,15 @@
-from aiogram import executor
+from aiogram import executor, types
+
+import const
+import filters
 from handlers import dp
+from init import bot
 import asyncio
-from datetime import datetime
-import pytz
+
 from scraper import requests
+from scraper.requests import matches_url
+from utils import percent, try_calculate, get_time
+
 
 async def main_cicle():
     while True:
