@@ -41,8 +41,6 @@ async def show_matches(filters, save_percent):
         if len(live_matches_id):
             scores = requests.get(requests.scores_url(live_matches_id))
 
-        not_found = True
-
         for match in matches:
             all_filter = False
             #check time if live
@@ -94,15 +92,10 @@ async def show_matches(filters, save_percent):
                         if bents_filter and bents_filter_2:
                             all_filter = True
             if all_filter and not const.PAUSE and const.START:
-                not_found = False
                 if save_percent:
                     await commands.add_percent(match_id, percents)
                 await asyncio.sleep(1)
                 await print_msg(print_str)
-        if not_found:
-            await print_msg("По указанным фильтрам матчей не найдено")
-    else:
-        await print_msg("По указанным фильтрам матчей не найдено")
 
 
 async def on_startup(dp):
