@@ -44,7 +44,6 @@ async def show_matches(filters, save_percent):
         not_found = True
 
         for match in matches:
-            print_str = match.get('m')
             all_filter = False
             #check time if live
             time_filter = True
@@ -55,6 +54,7 @@ async def show_matches(filters, save_percent):
             for p in old_percents:
                 if p.id == match_id:
                     old_percent = p.percents
+            print_str = ""
             if score and len(score) >= 2:
                 time = score[0]
                 time = time.split('+')[0]
@@ -64,10 +64,10 @@ async def show_matches(filters, save_percent):
                     or filters.time_2['from'] <= time <= filters.time_2['to']):
                         time_filter = False
                     goals = score[1]
-                    print_str += f' 🕑{time} ⚽{goals}:\n'
+                    print_str += f"{match.get('m')} 🕑{time} ⚽{goals}:\n"
             else:
                 time = get_time(match.get('ce'))
-                print_str += f' 🕑{time}:\n'
+                print_str += f"{match.get('m')} 🕑{time}:\n"
             #check bets
             if time_filter:
                 bents = match.get('i')
@@ -93,7 +93,7 @@ async def show_matches(filters, save_percent):
                         print_str += f"{name}: 💰{money} 📈{coeff} 💯{percents[i]} {f'🔥{old_percent[i]}' if bents_filter_3 else ''}\n"
                         if bents_filter and bents_filter_2:
                             all_filter = True
-            if all_filter:
+            if all_filter and not const.PAUSE:
                 not_found = False
                 if save_percent:
                     await commands.add_percent(match_id, percents)
@@ -120,8 +120,10 @@ async def main_cicle():
         await asyncio.sleep(30)
         if not const.PAUSE and const.START:
             const.SAVE_PERCENT = not const.SAVE_PERCENT
-            await show_matches(filters, const.SAVE_PERCENT)
-            await print_msg("---------------------------------------------")
+            try:
+                await show_matches(filters, const.SAVE_PERCENT)
+            except:
+                print('some error')
 
 
 if __name__ == '__main__':
