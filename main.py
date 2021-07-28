@@ -93,7 +93,7 @@ async def show_matches(filters, save_percent):
                         print_str += f"{name}: 💰{money} 📈{coeff} 💯{percents[i]} {f'🔥{old_percent[i]}' if bents_filter_3 else ''}\n"
                         if bents_filter and bents_filter_2:
                             all_filter = True
-            if all_filter and not const.PAUSE:
+            if all_filter and not const.PAUSE and const.START:
                 not_found = False
                 if save_percent:
                     await commands.add_percent(match_id, percents)
