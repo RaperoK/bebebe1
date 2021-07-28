@@ -97,8 +97,8 @@ async def show_matches(filters, save_percent):
                 not_found = False
                 if save_percent:
                     await commands.add_percent(match_id, percents)
+                await asyncio.sleep(1)
                 await print_msg(print_str)
-                await asyncio.sleep(0.1)
         if not_found:
             await print_msg("По указанным фильтрам матчей не найдено")
     else:
