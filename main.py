@@ -98,10 +98,10 @@ async def show_matches(filters, save_percent):
                     await commands.add_percent(match_id, percents)
                 await asyncio.sleep(1)
                 total = match.get('vm')
-                if total:
-                    print_str += f"In this league, the average volume on this issue is {total} €"
+                if try_parse_int(total) and int(total) > 0:
+                    print_str += f"Аverage: {total} 💶"
                 else:
-                    print_str += f"Not enough data yet"
+                    print_str += f"Аverage: Not enough data yet"
                 await print_msg(print_str)
 
 
