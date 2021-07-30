@@ -63,6 +63,8 @@ async def show_matches(filters, save_percent):
                         time_filter = False
                     goals = score[1]
                     print_str += f"{match.get('m')} 🕑{time} ⚽{goals}:\n"
+                else:
+                    time_filter = False
             else:
                 time = get_time(match.get('ce'))
                 print_str += f"{match.get('m')} 🕑{time}:\n"
@@ -95,6 +97,11 @@ async def show_matches(filters, save_percent):
                 if save_percent:
                     await commands.add_percent(match_id, percents)
                 await asyncio.sleep(1)
+                total = match.get('vm')
+                if total:
+                    print_str += f"In this league, the average volume on this issue is {total} €"
+                else:
+                    print_str += f"Not enough data yet"
                 await print_msg(print_str)
 
 
