@@ -27,6 +27,7 @@ async def spam_subscription(message: types.Message):
     await message.delete()
 
 
+
 @dp.message_handler(text="Приостановить", state=States.Filters.set_filters)
 async def spam_subscription(message: types.Message):
     const.START = False

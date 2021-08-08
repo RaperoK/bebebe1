@@ -1,6 +1,8 @@
 import requests
 import json
 
+from requests.structures import CaseInsensitiveDict
+
 from utils import get_date
 
 
@@ -30,6 +32,19 @@ def scores_url(id_list):
 
 def get(url):
     response = requests.get(url)
+    if response.ok:
+        result = response.text
+        if result:
+            result_json = json.loads(result)
+            return result_json
+    return []
+
+
+def get_match(id):
+    headers = CaseInsensitiveDict()
+    headers["X-Requested-With"] = "XMLHttpRequest"
+    headers = headers
+    response = requests.get(f"https://betwatch.fr/{id}", headers=headers)
     if response.ok:
         result = response.text
         if result:

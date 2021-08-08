@@ -16,8 +16,7 @@ def get_percents(list):
 
 def try_parse_int(text):
     try:
-        to_int = int(text)
-        return True
+        return int(text)
     except:
         return None
 

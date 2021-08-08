@@ -29,20 +29,20 @@ async def time_1_to(call: types.CallbackQuery):
 @dp.message_handler(state=States.Filters.time_1_from)
 async def time_1_from(message: types.Message):
     value = message.text
-    if try_parse_int(value) and const.TIME1['min'] <= int(value) < filters.time_1['to']:
+    if try_parse_int(value) and const.TIME1['min'] <= int(value) <= filters.time_1['to']:
         filters.time_1['from'] = int(value)
         await States.Filters.set_filters.set()
         await message.answer("Выберите, какие фильтры вы хотите изменить:", reply_markup=get_filters_keyboard(filters))
     else:
-        await message.answer(f"Значение должно быть >= {const.TIME1['min']} и < {filters.time_1['to']}")
+        await message.answer(f"Значение должно быть >= {const.TIME1['min']} и <= {filters.time_1['to']}")
 
 
 @dp.message_handler(state=States.Filters.time_1_to)
 async def time_1_to(message: types.Message):
     value = message.text
-    if try_parse_int(value) and filters.time_1['from'] < int(value) <= const.TIME1['max']:
+    if try_parse_int(value) and filters.time_1['from'] <= int(value) <= const.TIME1['max']:
         filters.time_1['to'] = int(value)
         await message.answer("Выберите, какие фильтры вы хотите изменить:", reply_markup=get_filters_keyboard(filters))
         await States.Filters.set_filters.set()
     else:
-        await message.answer(f"Значение должно быть > {filters.time_1['from']} и <= {const.TIME1['max']}")
+        await message.answer(f"Значение должно быть >= {filters.time_1['from']} и <= {const.TIME1['max']}")

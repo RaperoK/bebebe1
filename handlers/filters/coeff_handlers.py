@@ -29,20 +29,20 @@ async def coeff_to(call: types.CallbackQuery):
 @dp.message_handler(state=States.Filters.coeff_to)
 async def coeff_to(message: types.Message):
     value = message.text
-    if try_parse_float(value) and filters.coeff['from'] < float(value) <= const.COEFF['max']:
+    if try_parse_float(value) and filters.coeff['from'] <= float(value) <= const.COEFF['max']:
         filters.coeff['to'] = float(value)
         await message.answer("Выберите, какие фильтры вы хотите изменить:", reply_markup=get_filters_keyboard(filters))
         await States.Filters.set_filters.set()
     else:
-        await message.answer(f"Значение должно быть > {filters.coeff['from']} и <= {const.COEFF['max']}")
+        await message.answer(f"Значение должно быть >= {filters.coeff['from']} и <= {const.COEFF['max']}")
 
 
 @dp.message_handler(state=States.Filters.coeff_from)
 async def coeff_from(message: types.Message):
     value = message.text
-    if try_parse_float(value) and const.COEFF['min'] <= float(value) < filters.coeff['to']:
+    if try_parse_float(value) and const.COEFF['min'] <= float(value) <= filters.coeff['to']:
         filters.coeff['from'] = float(value)
         await message.answer("Выберите, какие фильтры вы хотите изменить:", reply_markup=get_filters_keyboard(filters))
         await States.Filters.set_filters.set()
     else:
-        await message.answer(f"Значение должно быть >= {const.COEFF['min']} и < {filters.coeff['to']}")
+        await message.answer(f"Значение должно быть >= {const.COEFF['min']} и <= {filters.coeff['to']}")

@@ -29,20 +29,20 @@ async def money_to(call: types.CallbackQuery):
 @dp.message_handler(state=States.Filters.money_from)
 async def money_from(message: types.Message):
     value = message.text
-    if try_parse_int(value) and const.MONEY['min'] <= int(value) < filters.money['to']:
+    if try_parse_int(value) and const.MONEY['min'] <= int(value) <= filters.money['to']:
         filters.money['from'] = int(value)
         await message.answer("Выберите, какие фильтры вы хотите изменить:", reply_markup=get_filters_keyboard(filters))
         await States.Filters.set_filters.set()
     else:
-        await message.answer(f"Значение должно быть >= {const.MONEY['min']} и < {filters.money['to']}")
+        await message.answer(f"Значение должно быть >= {const.MONEY['min']} и <= {filters.money['to']}")
 
 
 @dp.message_handler(state=States.Filters.money_to)
 async def money_to(message: types.Message):
     value = message.text
-    if try_parse_int(value) and filters.money['from'] < int(value) <= const.MONEY['max']:
+    if try_parse_int(value) and filters.money['from'] <= int(value) <= const.MONEY['max']:
         filters.money['to'] = int(value)
         await message.answer("Выберите, какие фильтры вы хотите изменить:", reply_markup=get_filters_keyboard(filters))
         await States.Filters.set_filters.set()
     else:
-        await message.answer(f"Значение должно быть > {filters.money['from']} и <= {const.MONEY['max']}")
+        await message.answer(f"Значение должно быть >= {filters.money['from']} и <= {const.MONEY['max']}")
