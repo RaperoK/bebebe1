@@ -133,8 +133,6 @@ async def main_cicle():
 
         if not const.PAUSE and const.START:
             const.SAVE_PERCENT = not const.SAVE_PERCENT
-            await show_matches(filters, const.SAVE_PERCENT)
-
             try:
                 await show_matches(filters, const.SAVE_PERCENT)
             except:
