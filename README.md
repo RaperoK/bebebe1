@@ -1,2 +1,2 @@
 # betwatchBot
-first telegram parser chat bot
+telegram parser chat bot
