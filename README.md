@@ -1,4 +1,4 @@
 # betwatchBot
 telegram parser chat bot
-![image](https://user-images.githubusercontent.com/38589077/129112365-a08c994b-e74b-4a86-b13e-145c81dc3923.png)
 
+![image](https://user-images.githubusercontent.com/38589077/129456738-be537d47-3636-4f69-a4f5-32e56c9112ec.png)
